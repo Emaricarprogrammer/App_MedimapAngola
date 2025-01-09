@@ -10,7 +10,7 @@ export class CategoryMedicineRepositories implements ICategoryMedicine
         this.prisma = prisma
     }
 
-    async createMedicineCategory(nomeCategoria: string,tx?: Omit<Prisma.TransactionClient, '$transaction'>): Promise<CategoryMedicine | null> {
+    async createMedicineCategory(nomeCategoria: string, tx?: Omit<Prisma.TransactionClient, '$transaction'>): Promise<CategoryMedicine | null> {
         const prismaCliente = tx || this.prisma;
         const CategoryQuery = await prismaCliente.categoria_Medicamentos.create({
           data: { nome_categoria_medicamento: nomeCategoria },

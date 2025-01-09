@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateAdminAccountController = void 0;
-const AdminRepository_1 = require("../../../Repositories/AdminRepository/AdminRepository");
+const AdminRepository_1 = require("../../../Repositories/AdminRepositories/AdminRepository");
 const client_1 = require("@prisma/client");
-const AccountRespository_1 = require("../../../Repositories/AccountRepository/AccountRespository");
+const AccountRespository_1 = require("../../../Repositories/AccountRepositories/AccountRespository");
 const validators_1 = require("../../../Utils/Validators/validators/validators");
 const validator_1 = __importDefault(require("validator"));
 const passwordService_1 = require("../../../Utils/PasswordService/passwordService");

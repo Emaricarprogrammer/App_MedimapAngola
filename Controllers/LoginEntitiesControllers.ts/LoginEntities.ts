@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
-import { AdminRepository } from "../../Repositories/AdminRepository/AdminRepository"
+import { AdminRepository } from "../../Repositories/AdminRepositories/AdminRepository"
 import { PrismaClient, Prisma } from '@prisma/client'
-import { AccountRepository } from '../../Repositories/AccountRepository/AccountRespository'
+import { AccountRepository } from '../../Repositories/AccountRepositories/AccountRespository'
 import { ValidatorProps } from '../../Utils/Validators/validators/validators'
 import {PasswordService} from "../../Utils/PasswordService/passwordService"
 import JWT from "jsonwebtoken"
@@ -11,8 +11,7 @@ import bcrypt from 'bcrypt';
 
 dotenv.config()
 const prisma = new PrismaClient()
-const AdminRepositoryInstance = new AdminRepository(prisma)
-const AccountRepositoryInstance = new AccountRepository(prisma)
+
 export class LoginEntity
 {
     static async  LoginEntities(req: Request, res: Response): Promise<Response>

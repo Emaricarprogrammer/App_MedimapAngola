@@ -15,5 +15,3 @@ export interface IAdminRespository{
   updateAdmin(id_admin: string, adminDatas: Partial<AdminData>): Promise<AdminData>
   deleteAdmin(id_admin: string): Promise<any>
   }
-
-  

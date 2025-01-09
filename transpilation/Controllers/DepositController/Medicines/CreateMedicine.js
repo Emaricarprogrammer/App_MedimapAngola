@@ -1,9 +1,13 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateMedicineController = void 0;
 const MedicineRepository_1 = require("../../../Repositories/DepositRepositories/MedicineRepository/MedicineRepository");
 const CategoryRepository_1 = require("../../../Repositories/DepositRepositories/CategoryMedicineRepository/CategoryRepository");
 const client_1 = require("@prisma/client");
+const validator_1 = __importDefault(require("validator"));
 // Inicializa o Prisma Client
 const prisma = new client_1.PrismaClient();
 // Instância dos Repositórios
@@ -23,10 +27,35 @@ class CreateMedicineController {
                     message: "Por favor, verifique se preencheu todos os campos",
                 });
             }
+            /*if (!validator.isURL(imagem_url))
+            {
+              return res.status(400).json({
+                success: false,
+                message: "Por favor, informe uma URL válida.",
+              });
+            }*/
+            if (!validator_1.default.isNumeric(quantidade_disponivel)) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Por favor, verifique se informou correctamente a quantidade de medicamentos disponível.",
+                });
+            }
+            if (!validator_1.default.toDate(validade_medicamento)) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Por favor, verfique se informou correctamente a data de validade deste medicamento.",
+                });
+            }
+            if (!validator_1.default.isNumeric(preco_medicamento)) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Por favor, verifique se informou correctamente o preço deste medicamento.",
+                });
+            }
             // Início da transação Prisma
             const result = await prisma.$transaction(async (tx) => {
                 // Criação da categoria dentro da transação usando o repositório
-                const CreatedCategory = await CategoryMedicineRepositoryInstance.createMedicineCategory(categoria_medicamento, tx // Passa a transação para o repositório
+                const CreatedCategory = await CategoryMedicineRepositoryInstance.createMedicineCategory(validator_1.default.escape(validator_1.default.trim(categoria_medicamento)), tx // Passa a transação para o repositório
                 );
                 if (!CreatedCategory || !CreatedCategory.id_categoria_medicamento) {
                     console.error("Erro ao criar conta");
@@ -37,9 +66,9 @@ class CreateMedicineController {
                 }
                 // Criação do medicamento dentro da transação usando o repositório
                 const medicineData = {
-                    nome_generico_medicamento: nome_generico,
-                    nome_comercial_medicamento: nome_comercial,
-                    origem_medicamento: origem_medicamento,
+                    nome_generico_medicamento: validator_1.default.escape(validator_1.default.trim(nome_comercial)),
+                    nome_comercial_medicamento: validator_1.default.escape(validator_1.default.trim(nome_comercial)),
+                    origem_medicamento: validator_1.default.escape(validator_1.default.trim(origem_medicamento)),
                     validade_medicamento: new Date(validade_medicamento), // Converte para Date
                     preco_medicamento: parseFloat(preco_medicamento), // Converte para número decimal
                     imagem_url: imagem_url,

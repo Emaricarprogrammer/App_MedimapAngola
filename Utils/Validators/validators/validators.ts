@@ -50,5 +50,25 @@ export class ValidatorProps
       }
       return InputSanitazed
     }
+    static MedicineSanitizeInput(categoria_medicamento: string, nome_generico: string,
+      nome_comercial:string,
+      origem_medicamento: string,
+      validade_medicamento: Date,
+      preco_medicamento: number,
+      imagem_url: string,
+      quantidade_disponivel: number)
+      {
+        let InputSanitized = {
+          categoria_medicamento_sanitized: validator.escape(categoria_medicamento),
+          nome_generico_sanitized: validator.escape(nome_generico),
+          nome_comercial_sanitized: validator.escape(nome_comercial),
+          origem_medicamento_sanitized: validator.escape(validator.trim(origem_medicamento)),
+          validade_medicamento_sanitized: validade_medicamento,
+          preco_medicamento_sanitized: validator.isNumeric(preco_medicamento.toString()),
+          imagem_url_sanitized: !validator.isURL(imagem_url)? "": imagem_url,
+          quantidade_disponivel_sanitized: validator.isInt(quantidade_disponivel.toString())
+        }
+        return InputSanitized
+      }
       
 }

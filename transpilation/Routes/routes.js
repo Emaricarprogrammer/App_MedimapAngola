@@ -11,7 +11,7 @@ route.route("/teste").post((req, res) => {
     const i = prisma.entidades.create({
         data: {
             NIF_entidade: 29393932222221,
-            firma_entidade: "Vamos ver so e filhos",
+            firma_entidade: "AIDA pharmacy",
             tipo_entidade: "deposito",
             id_conta_fk: "01b72519-c997-4772-bab0-99647ffc87d7"
         }

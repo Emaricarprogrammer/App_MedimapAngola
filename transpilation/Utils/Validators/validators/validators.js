@@ -48,5 +48,18 @@ class ValidatorProps {
         };
         return InputSanitazed;
     }
+    static MedicineSanitizeInput(categoria_medicamento, nome_generico, nome_comercial, origem_medicamento, validade_medicamento, preco_medicamento, imagem_url, quantidade_disponivel) {
+        let InputSanitized = {
+            categoria_medicamento_sanitized: validator_1.default.escape(categoria_medicamento),
+            nome_generico_sanitized: validator_1.default.escape(nome_generico),
+            nome_comercial_sanitized: validator_1.default.escape(nome_comercial),
+            origem_medicamento_sanitized: validator_1.default.escape(validator_1.default.trim(origem_medicamento)),
+            validade_medicamento_sanitized: validade_medicamento,
+            preco_medicamento_sanitized: validator_1.default.isNumeric(preco_medicamento.toString()),
+            imagem_url_sanitized: !validator_1.default.isURL(imagem_url) ? "" : imagem_url,
+            quantidade_disponivel_sanitized: validator_1.default.isInt(quantidade_disponivel.toString())
+        };
+        return InputSanitized;
+    }
 }
 exports.ValidatorProps = ValidatorProps;

@@ -23,11 +23,6 @@ export class AuthenticationController
             const decodedToken = await JWT.verify(token, process.env.SUPER_SECRET_KEY!) as JwtPayload
             req.body.user = decodedToken
 
-            if (["gestor"].includes(decodedToken.role))
-            {
-                console.log("Voe esta logado como admin")
-            }
-            console.log(decodedToken)
             next()
             
         } catch (error) {

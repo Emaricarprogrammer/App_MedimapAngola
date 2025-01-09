@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
-import { AccountRepository } from "../../../Repositories/AccountRepository/AccountRespository";
-import { AdminRepository } from "../../../Repositories/AdminRepository/AdminRepository";
+import { AccountRepository } from "../../../Repositories/AccountRepositories/AccountRespository";
+import { AdminRepository } from "../../../Repositories/AdminRepositories/AdminRepository";
 import { ValidatorProps } from '../../../Utils/Validators/validators/validators';
 
 const Prisma = new PrismaClient();

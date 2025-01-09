@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("@prisma/client");
-const AdminRepository_1 = require("../../../Repositories/AdminRepository/AdminRepository");
-const AccountRespository_1 = require("../../../Repositories/AccountRepository/AccountRespository");
+const AdminRepository_1 = require("../../../Repositories/AdminRepositories/AdminRepository");
+const AccountRespository_1 = require("../../../Repositories/AccountRepositories/AccountRespository");
 const validators_1 = require("../../../Utils/Validators/validators/validators");
 const SendEmail_1 = require("../../../Utils/providers/SendEmails/SendEmail");
 const dotenv_1 = __importDefault(require("dotenv"));

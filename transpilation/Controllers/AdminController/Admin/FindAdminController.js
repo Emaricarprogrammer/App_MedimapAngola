@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const AdminRepository_1 = require("../../../Repositories/AdminRepository/AdminRepository");
+const AdminRepository_1 = require("../../../Repositories/AdminRepositories/AdminRepository");
 const client_1 = require("@prisma/client");
 const Prisma = new client_1.PrismaClient();
 const AdminRepositoryInstance = new AdminRepository_1.AdminRepository(Prisma);
